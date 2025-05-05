@@ -1,1 +1,90 @@
-# desk
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Table Customizer</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .container { margin: 20px auto; width: 300px; }
+        img { width: 100%; max-width: 250px; display: block; margin: auto; }
+    </style>
+</head>
+<body>
+    <h2>Customize Your Desk</h2>
+    
+    <div class="container">
+        <!-- Image Display for Table -->
+        <img id="table-img" src="images/table round light brown.png" alt="Customized Table">
+        
+        <!-- Shape Selection -->
+        <label>Choose Shape:</label>
+        <select id="shape" onchange="updateTable()">
+            <option value="round">Round</option>
+            <option value="square">Square</option>
+            <option value="rectangular">Rectangular</option>
+        </select>
+        
+        <!-- Color Selection -->
+        <label>Choose Color:</label>
+        <select id="color" onchange="updateTable()">
+            <option value="light brown">Light Brown</option>
+            <option value="dark brown">Dark Brown</option>
+            <option value="black">Black</option>
+            <option value="white">White</option>
+            <option value="grey">Grey</option>
+            <option value="light grey">Light Grey</option>
+            <option value="red">Red</option>
+            <option value="green">Green</option>
+        </select>
+        
+        <!-- Accessories Selection -->
+        <label>Choose Accessories:</label>
+        <select id="accessories" onchange="updateTable()">
+            <option value="none">None</option>
+            <option value="hanger">Hanger</option>
+            <option value="wheel">Wheels</option>
+            <option value="drawer">Drawers</option>
+        </select>
+        
+        <!-- Wood Type Selection -->
+        <label>Choose Wood Type:</label>
+        <select id="wood-type" onchange="updateWoodType()">
+            <option value="oak">Oak</option>
+            <option value="maple">Maple</option>
+            <option value="walnut">Walnut</option>
+            <option value="pine">Pine</option>
+            <option value="teak">Teak</option>
+            <option value="cherry">Cherry</option>
+        </select>
+        
+        <!-- Displaying Selected Wood Type -->
+        <p id="wood-type-display">Selected Wood Type: Oak</p>
+    </div>
+    
+    <script>
+        // Update the table image based on the selections
+        function updateTable() {
+            let shape = document.getElementById("shape").value;
+            let color = document.getElementById("color").value;
+            let accessories = document.getElementById("accessories").value;
+            
+            // Construct the image name based on selections
+            let imageName = `images/table ${shape} ${color}`;
+            if (accessories !== "none") {
+                imageName += ` ${accessories}`;
+            }
+            imageName += ".png";
+            
+            // Update the image displayed
+            document.getElementById("table-img").src = imageName;
+        }
+
+        // Update the displayed wood type when selected
+        function updateWoodType() {
+            let woodType = document.getElementById("wood-type").value;
+            document.getElementById("wood-type-display").innerText = "Selected Wood Type: " + woodType.charAt(0).toUpperCase() + woodType.slice(1);
+        }
+    </script>
+</body>
+</html>
